@@ -7,7 +7,7 @@ import pandas as pd
 from kafka import KafkaProducer
 from datetime import datetime, timedelta
 
-SPEEDUP = 10
+SPEEDUP = 100
 MAX_EVENTS = 300000
 
 path = kagglehub.dataset_download("mlg-ulb/creditcardfraud")
