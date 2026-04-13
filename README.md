@@ -5,16 +5,16 @@ Ein **Producer** sendet Transaktionen als Stream in Kafka, ein **Consumer (Recei
 
 ---
 
-## 🧩 Komponenten
+## Komponenten
 
-### 1. Producer (`producer_stream.py`)
+### 1. Producer (`producer_kafka.py`)
 
 * Liest den Datensatz (Kaggle Credit Card Fraud)
 * Sortiert nach `Time`
 * Sendet Events in Echtzeit (oder beschleunigt) an Kafka
 * Topic: `transactions_raw`
 
-### 2. Consumer (`consumer_test.py`)
+### 2. Consumer (`consumer_kafka.py`)
 
 * Liest Events aus Kafka
 * Gibt sie strukturiert aus
@@ -22,7 +22,13 @@ Ein **Producer** sendet Transaktionen als Stream in Kafka, ein **Consumer (Recei
 
 ---
 
-## ⚙️ Voraussetzungen
+## Datensatz
+
+https://www.kaggle.com/datasets/mlg-ulb/creditcardfraud
+
+---
+
+## Voraussetzungen
 
 * Python 3.x
 * Docker + Docker Desktop (laufend)
@@ -34,7 +40,7 @@ pip install kafka-python pandas kagglehub scikit-learn
 
 ---
 
-## 🚀 Kafka starten
+## Kafka starten
 
 Im Projektordner:
 
@@ -55,7 +61,7 @@ Es sollten laufen:
 
 ---
 
-## ▶️ Stream starten
+## Stream starten
 
 ### Schritt 1: Consumer starten
 
@@ -75,7 +81,7 @@ python producer_stream.py
 
 ---
 
-## 📡 Datenfluss
+## Datenfluss
 
 ```text
 Dataset → Producer → Kafka (Topic: transactions_raw) → Consumer
@@ -83,7 +89,7 @@ Dataset → Producer → Kafka (Topic: transactions_raw) → Consumer
 
 ---
 
-## 📦 Event-Format
+## Event-Format
 
 Jedes Event enthält:
 
@@ -100,7 +106,7 @@ Jedes Event enthält:
 
 ---
 
-## 🧠 Hinweise
+## Hinweise
 
 * Events werden in **zeitlicher Reihenfolge** gesendet
 * Delay basiert auf der `Time`-Spalte (event-time replay)
@@ -108,7 +114,7 @@ Jedes Event enthält:
 
 ---
 
-## 🔄 Topic zurücksetzen (optional)
+## Topic zurücksetzen (optional)
 
 Falls alte Daten stören:
 
@@ -118,12 +124,9 @@ docker exec -it kafka kafka-topics --bootstrap-server localhost:9092 --delete --
 
 ---
 
-## 📌 Ziel
+## Ziel
 
 * Demonstration eines echten Datenstreams
 * Grundlage für ML-Anwendungen (z. B. Fraud Detection)
 * Erweiterbar um Modelle im Consumer
 
----
-
-Bei Fragen einfach melden 🙂
